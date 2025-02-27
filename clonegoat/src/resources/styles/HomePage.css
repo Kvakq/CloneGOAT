@@ -1,6 +1,7 @@
 .homepage-container {
   text-align: center;
   padding: 20px;
+  background-color: black;
 }
 
 .banner {
@@ -29,4 +30,29 @@
 
 .category:hover {
   background-color: #bbb;
+}
+
+.homepage-container {
+  padding: 50px;
+}
+
+.section-title {
+  color: white;
+  font-size: 24px;
+  font-weight: bold;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+}
+
+.shoes-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  max-width: 100%;
+}
+
+.shoes-container img {
+  width: 140px; /* Size of img shoes */
+  height: auto;
+  object-fit: contain;
 }
