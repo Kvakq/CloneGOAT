@@ -11,38 +11,67 @@ import AirZoomSpiridonSP from "../img/AirZoomSpiridonSPSilverRed2024.png";
 import DunkLowSBAluminum from "../img/DunkLowSBAluminum.png";
 import RetroLowOGSPReverseOlive from "../img/TRAirJordan1RetroLowOGSPReverseOlive.png";
 
+import Hoodie1 from "../img/YeezyGapHoodie.png";
+import Hoodie2 from "../img/YeezyGapHoodie.png";
+import Hoodie3 from "../img/YeezyGapHoodie.png";
+import Hoodie4 from "../img/YeezyGapHoodie.png";
+import Hoodie5 from "../img/YeezyGapHoodie.png";
+import Hoodie6 from "../img/YeezyGapHoodie.png";
+import Hoodie7 from "../img/YeezyGapHoodie.png";
+import Hoodie8 from "../img/YeezyGapHoodie.png";
+
 import "../styles/HomePage.css";
+
+const shoes = [
+  AirMax,
+  Dunk,
+  WmnsJordan,
+  DarkMocha,
+  RetroHigh85OGB,
+  AirDiamondTurf49ers,
+  RetroFear,
+  AirZoomSpiridonSP,
+  DunkLowSBAluminum,
+  RetroLowOGSPReverseOlive,
+];
+
+const hoodies = [
+  Hoodie1,
+  Hoodie2,
+  Hoodie3,
+  Hoodie4,
+  Hoodie5,
+  Hoodie6,
+  Hoodie7,
+  Hoodie8,
+];
+
+function ProductSection({ title, items, className }) {
+  return (
+    <div className="homepage-container">
+      <h2 className="section-title">{title}</h2>
+      <div className={className}>
+        {items.map((item, index) => (
+          <img key={index} src={item} alt={`${title} ${index}`} />
+        ))}
+      </div>
+    </div>
+  );
+}
 
 function HomePage() {
   return (
-    <div className="homepage-container">
-      <h2 className="section-title">Just Dropped</h2>
-      <div className="shoes-container">
-        {[
-          AirMax,
-          Dunk,
-          WmnsJordan,
-          DarkMocha,
-          RetroHigh85OGB,
-          AirDiamondTurf49ers,
-          RetroFear,
-          AirZoomSpiridonSP,
-          DunkLowSBAluminum,
-          RetroLowOGSPReverseOlive,
-          AirMax,
-          Dunk,
-          WmnsJordan,
-          DarkMocha,
-          RetroHigh85OGB,
-          AirDiamondTurf49ers,
-          RetroFear,
-          AirZoomSpiridonSP,
-          DunkLowSBAluminum,
-          RetroLowOGSPReverseOlive,
-        ].map((shoe, index) => (
-          <img key={index} src={shoe} alt={`Shoe ${index}`} />
-        ))}
-      </div>
+    <div>
+      <ProductSection
+        title="Just Dropped"
+        items={[...shoes, ...shoes]}
+        className="shoes-container"
+      />
+      <ProductSection
+        title="New Hoodies"
+        items={hoodies}
+        className="hoodies-container"
+      />
     </div>
   );
 }
