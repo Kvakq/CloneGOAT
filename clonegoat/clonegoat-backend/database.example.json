@@ -1,0 +1,11 @@
+{
+  "defaultEnv": "development",
+  "development": {
+    "driver": "pg",
+    "user": "your_username",
+    "password": "your_password",
+    "host": "localhost",
+    "database": "clonegoat",
+    "port": 5432
+  }
+}
