@@ -5,7 +5,14 @@
 
 .section-title {
   color: white;
-  font-size: 11.5px;
+  font-size: 15.5px;
+  line-height: 14px;
+  font-weight: 300;
+  margin-bottom: 20px;
+}
+
+.item-count {
+  font-size: 15.5px;
   line-height: 14px;
   font-weight: 300;
   margin-bottom: 20px;
@@ -13,45 +20,46 @@
 
 /* Sneaker Image Styles */
 .shoes-container {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
   gap: 20px;
-  max-width: 100%;
+  width: 100%;
+  justify-items: center;
+  align-items: center;
 }
 
-/* Sneaker Image Styles */
 .shoes-container img {
-  width: 140px;
+  width: 180px; /* Increased size */
   height: auto;
   object-fit: contain;
   max-width: 100%;
   border-radius: 10px;
   transition: transform 0.3s ease;
+  cursor: pointer;
 }
 
 .shoes-container img:hover {
   transform: scale(1.1);
 }
 
-/* A container for hoodies */
+/* Hoodies container */
 .hoodies-container {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
   gap: 35px;
-  max-width: 100%;
+  width: 100%;
   padding: 20px;
-  border-radius: 10px;
+  justify-items: center;
+  align-items: center;
 }
 
-/* Hoodies Image Styles */
 .hoodies-container img {
-  width: 160px;
+  width: 200px; /* Increased size */
   height: auto;
   object-fit: contain;
   max-width: 100%;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
 }
 
 .hoodies-container img:hover {

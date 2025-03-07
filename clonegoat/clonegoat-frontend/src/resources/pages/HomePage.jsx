@@ -20,19 +20,41 @@ import Hoodie6 from "../img/YeezyGapHoodie.png";
 import Hoodie7 from "../img/YeezyGapHoodie.png";
 import Hoodie8 from "../img/YeezyGapHoodie.png";
 
+import ProductGrid from "./ProductGrid";
+import "../styles/ProductGird.css";
 import "../styles/HomePage.css";
 
 const shoes = [
-  AirMax,
-  Dunk,
-  WmnsJordan,
-  DarkMocha,
-  RetroHigh85OGB,
-  AirDiamondTurf49ers,
-  RetroFear,
-  AirZoomSpiridonSP,
-  DunkLowSBAluminum,
-  RetroLowOGSPReverseOlive,
+  { image: AirMax, name: "Nike Air Max 95", year: 2025 },
+  { image: Dunk, name: "Nike Dunk Low 'Year of the Snake'", year: 2025 },
+  {
+    image: WmnsJordan,
+    name: "Wmns Air Jordan 4 Retro 'Net Black'",
+    year: 2024,
+  },
+  {
+    image: DarkMocha,
+    name: "Travis Scott x Jordan Jumpman Jack TR 'Dark Mocha'",
+    year: 2025,
+  },
+  {
+    image: RetroHigh85OGB,
+    name: "Air Jordan 1 Retro High 85 OG 'Bred Banned'",
+    year: 2025,
+  },
+  { image: AirDiamondTurf49ers, name: "Air Diamond Turf 49ers", year: 2025 },
+  { image: RetroFear, name: "Air Jordan 4 Retro 'Fear'", year: 2024 },
+  {
+    image: AirZoomSpiridonSP,
+    name: "Air Zoom Spiridon SP 'Silver Red'",
+    year: 2024,
+  },
+  { image: DunkLowSBAluminum, name: "Dunk Low SB 'Aluminum'", year: 2024 },
+  {
+    image: RetroLowOGSPReverseOlive,
+    name: "Travis Scott x Air Jordan 1 Retro Low OG SP 'Reverse Olive'",
+    year: 2024,
+  },
 ];
 
 const hoodies = [
@@ -46,13 +68,60 @@ const hoodies = [
   Hoodie8,
 ];
 
+const trendingShoes = [
+  { image: AirMax, name: "Nike Air Max 95", year: 2025 },
+  { image: Dunk, name: "Nike Dunk Low 'Year of the Snake'", year: 2025 },
+  {
+    image: WmnsJordan,
+    name: "Wmns Air Jordan 4 Retro 'Net Black'",
+    year: 2024,
+  },
+  {
+    image: DarkMocha,
+    name: "Travis Scott x Jordan Jumpman Jack TR 'Dark Mocha'",
+    year: 2025,
+  },
+  { image: AirMax, name: "Nike Air Max 95", year: 2025 },
+  { image: Dunk, name: "Nike Dunk Low 'Year of the Snake'", year: 2025 },
+  {
+    image: WmnsJordan,
+    name: "Wmns Air Jordan 4 Retro 'Net Black'",
+    year: 2024,
+  },
+  {
+    image: DarkMocha,
+    name: "Travis Scott x Jordan Jumpman Jack TR 'Dark Mocha'",
+    year: 2025,
+  },
+  { image: AirMax, name: "Nike Air Max 95", year: 2025 },
+  { image: Dunk, name: "Nike Dunk Low 'Year of the Snake'", year: 2025 },
+  {
+    image: WmnsJordan,
+    name: "Wmns Air Jordan 4 Retro 'Net Black'",
+    year: 2024,
+  },
+  {
+    image: DarkMocha,
+    name: "Travis Scott x Jordan Jumpman Jack TR 'Dark Mocha'",
+    year: 2025,
+  },
+];
+
 function ProductSection({ title, items, className }) {
   return (
     <div className="homepage-container">
-      <h2 className="section-title">{title}</h2>
+      <div className="section-header">
+        <h2 className="section-title">{title}</h2>
+        <span className="item-count">{items.length} Items</span>
+      </div>
       <div className={className}>
         {items.map((item, index) => (
-          <img key={index} src={item} alt={`${title} ${index}`} />
+          <img
+            key={index}
+            src={item}
+            alt={`${title} ${index}`}
+            style={{ width: "200px", height: "200px" }}
+          />
         ))}
       </div>
     </div>
@@ -64,7 +133,7 @@ function HomePage() {
     <div>
       <ProductSection
         title="Just Dropped"
-        items={[...shoes, ...shoes]}
+        items={[...shoes.map((s) => s.image), ...shoes.map((s) => s.image)]}
         className="shoes-container"
       />
       <ProductSection
@@ -72,6 +141,7 @@ function HomePage() {
         items={hoodies}
         className="hoodies-container"
       />
+      <ProductGrid title="Top Trending" products={trendingShoes} />
     </div>
   );
 }
