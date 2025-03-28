@@ -44,7 +44,7 @@ const Header = () => {
           {isOpen && (
             <div className="dropdown-menu">
               <NavLink
-                to="/shop/shoes"
+                to="/shoes"
                 className="nav-link dropdown-link"
                 onClick={handeleClick}
               >
