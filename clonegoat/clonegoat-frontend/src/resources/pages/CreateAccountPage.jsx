@@ -1,29 +1,34 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import "../styles/Account.css";
+import "../styles/CreateAccount.css";
 
-const AccountPage = () => {
+const CreateAccountPage = () => {
   const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
 
   return (
-    <div className="account-page">
-      <div className="account-container">
-        <div className="account-header">
-          <h2>Log In</h2>
+    <div className="create-account-page">
+      <div className="create-account-container">
+        <div className="create-account-header">
+          <h2>Create Account</h2>
           <button className="close-btn" onClick={() => navigate("/")}>
             Close
           </button>
         </div>
 
-        <form className="account-form">
+        <form className="create-account-form">
           <div className="input-group">
-            <label>Email or Username</label>
-            <input type="email" required />
+            <label>First and Last Name</label>
+            <input type="text" required />
           </div>
 
           <div className="input-group">
-            <label>Password</label>
+            <label>Email Address</label>
+            <input type="email" required />
+          </div>
+
+          <div className="input-group password-group">
+            <label>Password (+8 characters)</label>
             <div className="password-field">
               <input type={showPassword ? "text" : "password"} required />
               <button
@@ -33,22 +38,16 @@ const AccountPage = () => {
               >
                 {showPassword ? "Hide" : "Show"}
               </button>
-              <button type="button" className="forgot-btn">
-                Forgot
-              </button>
             </div>
           </div>
 
-          <button type="submit" className="login-btn">
-            LOG IN
+          <button type="submit" className="create-btn">
+            CREATE ACCOUNT
           </button>
         </form>
 
-        <p
-          className="create-account"
-          onClick={() => navigate("/create-account")}
-        >
-          Create Account
+        <p className="login-link" onClick={() => navigate("/account")}>
+          Log in
         </p>
 
         <p className="policy-text">
@@ -61,4 +60,4 @@ const AccountPage = () => {
   );
 };
 
-export default AccountPage;
+export default CreateAccountPage;

@@ -8,6 +8,7 @@ import ShoesPage from "./resources/pages/ShoesPage.jsx";
 import AccountPage from "./resources/pages/AccountPage.jsx";
 // import CartPage from "./resources/pages/CartPage.jsx";
 import EditorialPage from "./resources/pages/EditorialPage.jsx";
+import CreateAccountPage from "./resources/pages/CreateAccountPage.jsx";
 
 function App() {
   return (
@@ -24,6 +25,10 @@ function App() {
       </main>
       <Routes>
         <Route path="/account" element={null} />
+        <Route
+          path="/create-account"
+          element={<CreateAccountPage hideFooter />}
+        />
         <Route path="*" element={<Footer />} />
       </Routes>
     </Router>
