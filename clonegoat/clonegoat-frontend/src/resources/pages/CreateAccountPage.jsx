@@ -3,8 +3,85 @@ import { useNavigate } from "react-router-dom";
 import "../styles/CreateAccount.css";
 
 const CreateAccountPage = () => {
-  const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
+  const [showPassword, setShowPassword] = useState(false);
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    password: "",
+  });
+  const [errors, setErrors] = useState({});
+  const [isLoading, setIsLoading] = useState(false);
+
+  const validateForm = () => {
+    const newErrors = {};
+    if (!formData.name.trim()) {
+      newErrors.name = "Name is required";
+    }
+    if (!formData.email.trim()) {
+      newErrors.email = "Email is required";
+    } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
+      newErrors.email = "Email is invalid";
+    }
+    if (!formData.password) {
+      newErrors.password = "Password is required";
+    } else if (formData.password.length < 8) {
+      newErrors.password = "Password must be at least 8 characters";
+    }
+    return newErrors;
+  };
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+    // Clear error when user starts typing
+    if (errors[name]) {
+      setErrors((prev) => ({
+        ...prev,
+        [name]: "",
+      }));
+    }
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const newErrors = validateForm();
+    
+    if (Object.keys(newErrors).length > 0) {
+      setErrors(newErrors);
+      return;
+    }
+
+    setIsLoading(true);
+    try {
+      const response = await fetch('http://localhost:3001/api/users/register', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        credentials: 'include',
+        body: JSON.stringify(formData),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.message || 'Registration failed');
+      }
+
+      // Registration successful
+      navigate('/account');
+    } catch (error) {
+      setErrors({
+        submit: error.message || "Registration failed. Please try again.",
+      });
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
   return (
     <div className="create-account-page">
@@ -16,21 +93,41 @@ const CreateAccountPage = () => {
           </button>
         </div>
 
-        <form className="create-account-form">
+        <form className="create-account-form" onSubmit={handleSubmit}>
           <div className="input-group">
             <label>First and Last Name</label>
-            <input type="text" required />
+            <input
+              type="text"
+              name="name"
+              value={formData.name}
+              onChange={handleInputChange}
+              required
+            />
+            {errors.name && <span className="error-message">{errors.name}</span>}
           </div>
 
           <div className="input-group">
             <label>Email Address</label>
-            <input type="email" required />
+            <input
+              type="email"
+              name="email"
+              value={formData.email}
+              onChange={handleInputChange}
+              required
+            />
+            {errors.email && <span className="error-message">{errors.email}</span>}
           </div>
 
           <div className="input-group password-group">
             <label>Password (+8 characters)</label>
             <div className="password-field">
-              <input type={showPassword ? "text" : "password"} required />
+              <input
+                type={showPassword ? "text" : "password"}
+                name="password"
+                value={formData.password}
+                onChange={handleInputChange}
+                required
+              />
               <button
                 type="button"
                 className="show-btn"
@@ -39,10 +136,13 @@ const CreateAccountPage = () => {
                 {showPassword ? "Hide" : "Show"}
               </button>
             </div>
+            {errors.password && <span className="error-message">{errors.password}</span>}
           </div>
 
-          <button type="submit" className="create-btn">
-            CREATE ACCOUNT
+          {errors.submit && <div className="error-message">{errors.submit}</div>}
+
+          <button type="submit" className="create-btn" disabled={isLoading}>
+            {isLoading ? "CREATING ACCOUNT..." : "CREATE ACCOUNT"}
           </button>
         </form>
 
